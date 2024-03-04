@@ -22,7 +22,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <a className="nav-link" href="/Home">
+                            <a className="nav-link" href="/">
                                 Home
                             </a>
                         </li>
@@ -32,8 +32,13 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" tp="/EventHandling">
+                            <Link className="nav-link" to="/EventHandling">
                                 EventHandling
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/TodoList">
+                                TodoList
                             </Link>
                         </li>
                         <li className="nav-item">

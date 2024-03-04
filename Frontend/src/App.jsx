@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar'
 import About from './Components/About'
 import Home from './Components/Home'
 import Login from './Components/Login'
+import TodoList from './Components/TodoList'
 import EventHandling from './Components/EventHandling'
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='/About' element={<About />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/EventHandling' element={<EventHandling />} />
+          <Route path='/TodoList' element={<TodoList />} />
         </Routes>
         </BrowserRouter>
     </div>

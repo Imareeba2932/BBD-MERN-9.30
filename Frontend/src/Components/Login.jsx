@@ -1,6 +1,30 @@
 import React from 'react'
+import {useFormik} from 'formik'
+import * as yup from 'yup'
+
+// Step5 : Validation Schema
+const LoginSchema = yup.object().shape({
+  email: yup.string().email('Invalid Email').required('Required'),
+  password: yup.string().required('required').min(8)
+
+})
 
 const Login = () => {
+
+  // Step1 : Formik Initialization
+  const loginForm = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    // Step4 : what happens when form is submitted
+    onSubmit : (values , {resetForm}) => {
+      console.log(values)
+      resetForm()
+    },
+    // Step6 : Validation Schema
+    validationSchema: LoginSchema
+  })
   return (
     <div style={{
       backgroundImage: `url(${'https://cdn.dribbble.com/userupload/12550075/file/original-6a0b4d9fb62dc22fd37eb8dc24b9319c.jpg?resize=1024x683'})`,
@@ -15,18 +39,28 @@ const Login = () => {
               src="http://cdn.onlinewebfonts.com/svg/img_458466.png"
               alt=""
             />
-            <form>
+            {/* Step2 : Handling when submit */}
+            <form onSubmit={loginForm.handleSubmit}>
+              {/* Step3 : Fields Handling */}
               <input
                 className="mt-3 w-75 d-flex mx-auto p-2 rounded"
                 type="email"
                 placeholder="Enter your email"
+                name="email"
+                onChange={loginForm.handleChange}
+                value={loginForm.values.email}
               />
+              <span style={{color:'red', fontsize: '50px', marginLeft: '10px'}}>{loginForm.errors.email}</span>
               <input
                 className="mt-3 w-75 d-flex mx-auto p-1 rounded"
                 type="password"
                 placeholder="Enter your password"
+                name="password"
+                onChange={loginForm.handleChange}
+                value={loginForm.values.password}
               />
-              <button className="mt-3 btn btn-primary d-flex mx-auto">Login</button>
+              <span style={{color:'red', fontsize: '10'}}>{loginForm.touched.password && loginForm.errors.password}</span>
+              <button type='submit' className="mt-3 btn btn-primary d-flex mx-auto">Login</button>
             </form>
           </div>
         </div>

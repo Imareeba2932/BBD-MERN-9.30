@@ -7,20 +7,25 @@ import Home from './Components/Home'
 import Login from './Components/Login'
 import TodoList from './Components/TodoList'
 import EventHandling from './Components/EventHandling'
+import Signup from './Components/Signup'
+import {SnackbarProvider} from 'notistack'
 
 const App = () => {
   return (
     <div>
+      <SnackbarProvider>
         <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/About' element={<About />} />
           <Route path='/Login' element={<Login />} />
+          <Route path='/Signup' element={<Signup />} />
           <Route path='/EventHandling' element={<EventHandling />} />
           <Route path='/TodoList' element={<TodoList />} />
         </Routes>
         </BrowserRouter>
+      </SnackbarProvider>
     </div>
   )
 }

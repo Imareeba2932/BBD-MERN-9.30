@@ -2,9 +2,12 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.get('/add', (req, res) => {
-    res.send('Hello World!')
-})
+const UserRouter = require('./Routers/User')
+
+// middleware
+app.use(express.json());
+
+app.use('/user', UserRouter)
 
 
 app.listen(port, () => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import {useFormik} from 'formik'
 import * as yup from 'yup'
+import { enqueueSnackbar } from 'notistack'
 
 // Step5 : Validation Schema
 const LoginSchema = yup.object().shape({
@@ -18,12 +19,27 @@ const Login = () => {
       password: ''
     },
     // Step4 : what happens when form is submitted
-    onSubmit : (values , {resetForm}) => {
-      console.log(values)
-      resetForm()
-    },
+    onSubmit : async(values , action) => {
+      console.log(values);
+      const res = await fetch ("http://localhost:3000/user/authenticate",{
+        method:'POST',
+        body: JSON.stringify(values),
+        headers:{
+            'Content-Type':'application/json'
+        }
+      });
+      console.log(res.status)
+      action.resetForm()
+
+      if (res.status === 200){
+        enqueueSnackbar('Login Successfully', {variant: 'success'})
+      } else {
+        enqueueSnackbar('Login failed', {variant: 'error'})
+      }
+    } 
+
     // Step6 : Validation Schema
-    validationSchema: LoginSchema
+    // validationSchema: LoginSchema
   })
   return (
     <div style={{

@@ -7,7 +7,7 @@ const Browse = () => {
     //   const { category } = useParams();
 
     const fetchProduct = async () => {
-        const res = await fetch("http://localhost:5000/product/getall");
+        const res = await fetch("http://localhost:3000/product/getall");
 
         console.log(res.status);
 
@@ -31,7 +31,7 @@ const Browse = () => {
                     <div className="card p-3 mb-5 bg-dark p-card">
                         <h3 style={{ paddingLeft: "20px" }} className="mt-3 text-light">{obj.pname}</h3>
                         <p style={{ paddingLeft: "20px" }} className="text-light">{obj.pprice}</p>
-                        {/* <Link to={'/view/' + service._id} className="btn btn-outline-primary m-2">Know More</Link> */}
+                        <Link to={'/view/' + obj._id} className="btn btn-outline-primary m-2">Know More</Link>
 
 
                     </div>

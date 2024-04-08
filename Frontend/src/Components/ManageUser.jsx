@@ -16,13 +16,23 @@ const ManageUser = () => {
         fetchUserData()
     }, [])
 
+    const deleteProduct = async (id) => {
+        console.log(id);
+        const res = await fetch("http://localhost:3000/user/delete/" + id, {
+            method: "DELETE",
+        });
+        if (res.status === 200) {
+            fetchUserData();
+        }
+    }
+
     const displayUser = () =>{
         return Data.map((user) => (
             <tr>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                    <button className="btn btn-danger">Delete</button>
+                    <button onClick = {() => { deleteProduct(user._id)}} className="btn btn-danger">Delete</button>
                 </td>
             </tr>
         ))

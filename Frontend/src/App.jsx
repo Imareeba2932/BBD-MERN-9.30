@@ -13,6 +13,7 @@ import ManageUser from './Components/ManageUser'
 import Addproduct from './Components/AddProduct'
 import Browse from './Components/Browse'
 import View from './Components/View'
+import Notfound from './Components/Notfound'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='*' element={<Notfound />} />
           <Route path='/About' element={<About />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/Signup' element={<Signup />} />
@@ -30,7 +32,7 @@ const App = () => {
           <Route path='/ManageUser' element={<ManageUser />} />
           <Route path='/AddProduct' element={<Addproduct />} />
           <Route path='/Browse' element={<Browse />} />
-          <Route path='/View' element={<View />} />
+          <Route path='/View/:id' element={<View />} />
         </Routes>
         </BrowserRouter>
       </SnackbarProvider>

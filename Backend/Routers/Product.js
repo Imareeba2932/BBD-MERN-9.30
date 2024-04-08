@@ -27,7 +27,8 @@ router.get('/getall',(req,res) => {
 });
 router.get('/getbyid/:id',(req,res) => {
     // empty brackets will give all the data from the database
-    Model.findById({})
+    console.log(req.params.id)
+    Model.findById(req.params.id)
     .then((result) => {
         res.json(result)
     }).catch((err) => {
